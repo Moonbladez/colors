@@ -7,10 +7,9 @@ import { render } from "@testing-library/react";
 
 class App extends Component {
 	render() {
-		console.log(generatePalette(SeedColors[4]));
 		return (
 			<div className='App'>
-				<Palette palette={SeedColors[1]} />
+				<Palette palette={generatePalette(SeedColors[4])} />
 			</div>
 		);
 	}
