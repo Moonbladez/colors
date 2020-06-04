@@ -11,7 +11,7 @@ export const MiniPalette = (props) => {
 		></MiniColor>
 	));
 	return (
-		<Wrapper>
+		<Wrapper onClick={props.handleClick}>
 			<Colors>{miniColorBoxes}</Colors>
 			<Title>
 				{paletteName}
