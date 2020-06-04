@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import Slider from "rc-slider";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import { AiOutlineClose } from "react-icons/ai";
 
 import "rc-slider/assets/index.css";
 import "./Navbar.css";
@@ -10,21 +13,26 @@ import "./Navbar.css";
 export class Navbar extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { format: "hex" };
+		this.state = { format: "hex", open: false };
 		this.handleChange = this.handleChange.bind(this);
+		this.closeToast = this.closeToast.bind(this);
 	}
 
 	handleChange(event) {
-		this.setState({ format: event.target.value });
+		this.setState({ format: event.target.value, open: true });
 		this.props.handleChange(event.target.value);
 	}
+
+	closeToast() {
+		this.setState({ open: false });
+	}
 	render() {
-		const { level, changeLevel, handleChange } = this.props;
+		const { level, changeLevel } = this.props;
 		const { format } = this.state;
 		return (
 			<nav className='Navbar'>
 				<div className='brand'>
-					<a href='#'>Kulers</a>
+					<a href='/'>Kulers</a>
 				</div>
 				<div className='slider_container'>
 					<span>level: {level}</span>
@@ -47,6 +55,30 @@ export class Navbar extends Component {
 						</MenuItem>
 					</Select>
 				</div>
+				<Snackbar
+					anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+					open={this.state.open}
+					autoHideDuration={3000}
+					message={
+						<span id='message-id'>
+							Changed Format to {format.toUpperCase()}
+						</span>
+					}
+					ContentProps={{
+						"aria-describeby": "message-id",
+					}}
+					onClose={this.closeToast}
+					action={[
+						<IconButton
+							onClick={this.closeToast}
+							color='inherit'
+							key='close'
+							aria-label='close'
+						>
+							<AiOutlineClose />
+						</IconButton>,
+					]}
+				/>
 			</nav>
 		);
 	}
