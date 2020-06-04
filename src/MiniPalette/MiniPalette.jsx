@@ -3,11 +3,16 @@ import React from "react";
 import styled from "styled-components";
 
 export const MiniPalette = (props) => {
-	const { paletteName, emoji } = props;
-	console.log(props);
+	const { paletteName, emoji, colors } = props;
+	const miniColorBoxes = colors.map((color) => (
+		<MiniColor
+			style={{ backgroundColor: color.color }}
+			key={color.paletteName}
+		></MiniColor>
+	));
 	return (
 		<Wrapper>
-			<div></div>
+			<Colors>{miniColorBoxes}</Colors>
 			<Title>
 				{paletteName}
 				<span>{emoji}</span>
@@ -27,6 +32,23 @@ const Wrapper = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+
+const Colors = styled.div`
+	background-color: #dae1e4;
+	height: 150px;
+	width: 100%;
+	border-radius: 0.3rem;
+	overflow: hidden;
+`;
+
+const MiniColor = styled.div`
+	height: 25%;
+	width: 20%;
+	display: inline-block;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: -4px;
 `;
 
 const Title = styled.h5`

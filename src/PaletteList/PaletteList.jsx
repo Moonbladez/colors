@@ -26,7 +26,7 @@ export class PaletteList extends Component {
 
 const Wrapper = styled.main`
 	background-color: blue;
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -38,7 +38,6 @@ const Container = styled.div`
 	align-items: flex-start;
 	flex-direction: column;
 	flex-wrap: wrap;
-	border: 1px solid white;
 `;
 
 const Header = styled.header`
