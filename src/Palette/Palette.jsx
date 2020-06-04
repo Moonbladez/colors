@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { ColorBox } from "../ColorBox/ColorBox";
 import { Navbar } from "../Navbar/Navbar";
+import { Footer } from "../Footer/Footer";
 
 import "./Palette.css";
 
@@ -37,7 +38,7 @@ export class Palette extends Component {
 					handleChange={this.changeFormat}
 				/>
 				<div className='Palette-colors'>{colorBoxes}</div>
-				{/* fiiter goes here */}
+				<Footer colors={this.props.palette} />
 			</div>
 		);
 	}
