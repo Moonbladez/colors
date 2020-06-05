@@ -29,25 +29,28 @@ export class Navbar extends Component {
 		this.setState({ open: false });
 	}
 	render() {
-		const { level, changeLevel } = this.props;
+		const { level, changeLevel, isAllPalette } = this.props;
 		const { format } = this.state;
 		return (
 			<nav className='Navbar'>
 				<div className='brand'>
 					<Link to='/'>Kulur</Link>
 				</div>
-				<div className='slider_container'>
-					<span>level: {level}</span>
-					<div className='slider'>
-						<Slider
-							defaultValue={level}
-							min={100}
-							max={900}
-							step={100}
-							onAfterChange={changeLevel}
-						/>
+				{isAllPalette && (
+					<div className='slider_container'>
+						<span>level: {level}</span>
+						<div className='slider'>
+							<Slider
+								defaultValue={level}
+								min={100}
+								max={900}
+								step={100}
+								onAfterChange={changeLevel}
+							/>
+						</div>
 					</div>
-				</div>
+				)}
+
 				<div className='select-container'>
 					<Select onChange={this.handleChange} value={format}>
 						<MenuItem value='hex'>HEX - #fffffff</MenuItem>

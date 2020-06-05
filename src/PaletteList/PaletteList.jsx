@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { MiniPalette } from "../MiniPalette/MiniPalette";
 
 import styled from "styled-components";
@@ -21,6 +23,7 @@ export class PaletteList extends Component {
 							<MiniPalette
 								{...palette}
 								handleClick={() => this.goToPalette(palette.id)}
+								key={uuidv4()}
 							/>
 						))}
 					</Palettes>

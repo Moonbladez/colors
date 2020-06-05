@@ -1,5 +1,7 @@
 import React from "react";
 
+import { v4 as uuidv4 } from "uuid";
+
 import styled from "styled-components";
 
 export const MiniPalette = (props) => {
@@ -7,7 +9,7 @@ export const MiniPalette = (props) => {
 	const miniColorBoxes = colors.map((color) => (
 		<MiniColor
 			style={{ backgroundColor: color.color }}
-			key={color.paletteName}
+			key={uuidv4()}
 		></MiniColor>
 	));
 	return (

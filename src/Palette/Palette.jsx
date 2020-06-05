@@ -43,6 +43,7 @@ export class Palette extends Component {
 					level={level}
 					changeLevel={this.changeLevel}
 					handleChange={this.changeFormat}
+					isAllPalette={true}
 				/>
 				<div className='Palette-colors'>{colorBoxes}</div>
 				<Footer colors={this.props.palette} />
