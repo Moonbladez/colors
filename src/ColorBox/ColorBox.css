@@ -57,6 +57,16 @@
 	font-size: 12px;
 }
 
+.light-text {
+	color: #fefefe;
+}
+
+.ColorBox .dark-text {
+	color: black;
+}
+
+
+
 .see-more {
 	background: rgba(255, 255, 255, 0.3);
 	position: absolute;
@@ -70,6 +80,8 @@
 	line-height: 30px;
 	text-transform: uppercase;
 }
+
+
 
 .copy-overlay {
 	opacity: 0;
