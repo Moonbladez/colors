@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { ChromePicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
 
+import { DraggableColorBox } from "../DraggableColorBox/DraggableColorBox";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -57,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "flex-end",
 	},
 	content: {
+		height: "calc(100vh - 64px)",
 		flexGrow: 1,
 		padding: theme.spacing(3),
 		transition: theme.transitions.create("margin", {
@@ -156,13 +159,9 @@ export default function PersistentDrawerLeft() {
 				})}
 			>
 				<div className={classes.drawerHeader} />
-				<ul>
-					{colors.map((color) => (
-						<li key={uuidv4()} style={{ background: color }}>
-							{color}
-						</li>
-					))}
-				</ul>
+				{colors.map((color) => (
+					<DraggableColorBox color={color} key={uuidv4()} />
+				))}
 			</main>
 		</div>
 	);
