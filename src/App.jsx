@@ -5,7 +5,7 @@ import { Palette } from "./Palette/Palette";
 import { PaletteList } from "./PaletteList/PaletteList";
 import { SingleColorPalette } from "./SingleColorPalette/SingleColorPalette";
 import { generatePalette } from "./ColorHelpers/colorHelpers";
-import { NewPaletteForm } from "./NewPaletteForm/NewPaletteForm";
+import NewPaletteForm from "./NewPaletteForm/NewPaletteForm";
 import SeedColors from "./SeedColors/SeedColors";
 
 class App extends Component {
