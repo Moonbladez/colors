@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
 
 import { ChromePicker } from "react-color";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineLeft } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
 
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 
-const drawerWidth = 300;
+import { AiOutlineLeft, AiOutlineMenu } from "react-icons/ai";
+
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -74,9 +74,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export function NewPaletteForm() {
+export default function PersistentDrawerLeft() {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+	const [currentColor, setCurrentColor] = useState("red");
+	const [colors, setColors] = useState(["purple", "pink"]);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -86,6 +88,7 @@ export function NewPaletteForm() {
 		setOpen(false);
 	};
 
+	console.log(colors);
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
@@ -103,7 +106,7 @@ export function NewPaletteForm() {
 						edge='start'
 						className={clsx(classes.menuButton, open && classes.hide)}
 					>
-						<GiHamburgerMenu />
+						<AiOutlineMenu />
 					</IconButton>
 					<Typography variant='h6' noWrap>
 						Persistent drawer
@@ -119,24 +122,31 @@ export function NewPaletteForm() {
 					paper: classes.drawerPaper,
 				}}
 			>
-				<Divider />
-
 				<div className={classes.drawerHeader}>
 					<IconButton onClick={handleDrawerClose}>
 						<AiOutlineLeft />
 					</IconButton>
 				</div>
+
 				<Typography variant='h4'>Design Your Palette</Typography>
 				<div>
 					<Button variant='contained' color='secondary'>
 						Clear Palette
 					</Button>
-					<Button variant='outlined' color='secondary'>
+					<Button variant='outlined' color='primary'>
 						Random Color
 					</Button>
 				</div>
-				<ChromePicker />
-				<Button variant='contained' color='default' size='large'>
+				<ChromePicker
+					color={currentColor}
+					onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
+				/>
+				<Button
+					variant='contained'
+					color='default'
+					style={{ background: currentColor }}
+					onClick={() => setColors([...colors, currentColor])}
+				>
 					Add Color
 				</Button>
 			</Drawer>
@@ -146,6 +156,13 @@ export function NewPaletteForm() {
 				})}
 			>
 				<div className={classes.drawerHeader} />
+				<ul>
+					{colors.map((color) => (
+						<li key={uuidv4()} style={{ background: color }}>
+							{color}
+						</li>
+					))}
+				</ul>
 			</main>
 		</div>
 	);
